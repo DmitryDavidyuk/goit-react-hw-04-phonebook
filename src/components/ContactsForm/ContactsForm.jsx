@@ -24,6 +24,7 @@ export default function ContactsForm({ onSubmit }) {
     e.preventDefault();
 
     onSubmit({ name, number });
+
     setName('');
     setNumber('');
   };

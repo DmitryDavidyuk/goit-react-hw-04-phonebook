@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import CSS from './Contacts.module.css';
 
 export default function ContactsForm({ onSubmit }) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(
+    () => JSON.parse(window.localStorage.getItem('name')) ?? ''
+  );
   const [number, setNumber] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem('name', JSON.stringify(name));
+  }, [name]);
 
   const handleChange = e => {
     const { name, value } = e.target;
